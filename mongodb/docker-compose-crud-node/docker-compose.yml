@@ -1,0 +1,14 @@
+version: '3'
+services: 
+  database: 
+    image: 'mongo'
+    container_name: 'mongo-crud-node'
+    environment: 
+      - MONGO_INITDB_DATABASE=crud-mongo
+      - MONGO_INITDB_ROOT_USERNAME=adminM
+      - MONGO_INITDB_ROOT_PASSWORD=mongoadmin
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
